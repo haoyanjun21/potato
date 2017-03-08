@@ -34,9 +34,7 @@ public class IdleConnectionMonitorThread extends Thread {
 
     public void shutdown() {
         shutdown = true;
-        synchronized (this) {
-            notifyAll();
-        }
+
     }
 
 }

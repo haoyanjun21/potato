@@ -27,7 +27,7 @@ public class AsyncServlet extends HttpServlet {
         async.start(new Runnable() {
             @Override
             public void run() {
-                ServletRequest request = async.getRequest();
+                async.getRequest();
                 try {
                     Thread.sleep(2000);
                     async.getResponse().getWriter().write("aync thread processing");

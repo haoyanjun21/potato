@@ -17,29 +17,6 @@ public class HystrixTest {
 
 }
 
-class CommandHelloWorld extends HystrixCommand<String> {
-
-    private final String name;
-
-    public CommandHelloWorld(String name) {
-        super(HystrixCommandGroupKey.Factory.asKey("ExampleGroup"));
-        this.name = name;
-    }
-
-    public static void main(String[] args) {
-        //客户端调用：以前是直接调用远端RPC接口，现在是把RPC接口封装到HystrixCommand里面，它内部完成熔断逻辑
-        String s = new CommandHelloWorld("World").execute();
-        System.out.println(s);
-    }
-
-    @Override
-    protected String run() {
-        //关键点：把一个RPC调用，封装在一个HystrixCommand里面
-        return "Hello " + name + "!";
-    }
-
-}
-
 class HelloWorldCommand extends HystrixCommand<String> {
     private final String name;
 

@@ -9,11 +9,12 @@ import com.potato.util.HttpClientUtil;
 public class APITest {
 
     public static void main(String[] args) throws Exception {
+        int[] functions = {1, 4};
         String url = "http://localhost:8080/api/";
         String result;
         long start = System.currentTimeMillis();
-        for (int i = 0; i < 20; i++) {
-            result = HttpClientUtil.get(url + (i % 5));
+        for (int i = 0; i < 100; i++) {
+            result = HttpClientUtil.get(url + (functions[i % 2]));
             System.out.println(result);
         }
         System.out.println("total cost:" + (System.currentTimeMillis() - start));

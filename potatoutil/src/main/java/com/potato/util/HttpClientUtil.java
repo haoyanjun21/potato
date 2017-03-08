@@ -162,17 +162,17 @@ public class HttpClientUtil {
         return execute(url, httppost);
     }
 
-    private static String execute(String url, HttpRequestBase httpRequestBase) throws Exception {
+    private static String execute(String url, HttpRequestBase httpRequestBase) {
         CloseableHttpResponse response = null;
+        String result;
         try {
-            response = getHttpClient(url).execute(httpRequestBase,
-                    HttpClientContext.create());
+            response = getHttpClient(url).execute(httpRequestBase, HttpClientContext.create());
             HttpEntity entity = response.getEntity();
-            String result = EntityUtils.toString(entity, "utf-8");
+            result = EntityUtils.toString(entity, "utf-8");
             EntityUtils.consume(entity);
-            return result;
         } catch (Exception e) {
-            throw e;
+            result = "{code:" + e.getMessage() + "}";
+            System.out.println(result);
         } finally {
             try {
                 if (response != null)
@@ -181,9 +181,10 @@ public class HttpClientUtil {
                 e.printStackTrace();
             }
         }
+        return result;
     }
 
-    public static String get(String url) throws Exception {
+    public static String get(String url) {
         HttpGet httpget = new HttpGet(url);
         config(httpget);
         return execute(url, httpget);
