@@ -1,4 +1,4 @@
-package com.potato.rest.api;
+package com.potato.web;
 
 import com.netflix.hystrix.HystrixCommand;
 import com.netflix.hystrix.HystrixCommandGroupKey;

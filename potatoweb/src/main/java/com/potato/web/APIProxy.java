@@ -1,16 +1,13 @@
-package com.potato.rest.api;
+package com.potato.web;
 
-import com.potato.rest.Constants;
+import com.potato.util.Constants;
 import org.apache.commons.lang.StringUtils;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.stereotype.Component;
 
 /**
  * Created by bjhaoyanjun on 2017/3/8.
  */
 @Component
-@ImportAutoConfiguration
 public class APIProxy {
 
     /**

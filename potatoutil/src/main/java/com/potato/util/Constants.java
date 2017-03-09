@@ -1,4 +1,4 @@
-package com.potato.rest;
+package com.potato.util;
 
 import com.google.common.util.concurrent.RateLimiter;
 
