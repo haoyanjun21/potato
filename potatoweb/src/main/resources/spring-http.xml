@@ -7,12 +7,10 @@
     <context:property-placeholder location="classpath:http.properties"/>
 
     <!-- 定义连接管理器 -->
-    <bean id="httpClientConnectionManager"
-          class="org.apache.http.impl.conn.PoolingHttpClientConnectionManager"
+    <bean id="httpClientConnectionManager" class="org.apache.http.impl.conn.PoolingHttpClientConnectionManager"
           destroy-method="close">
         <!-- 最大连接数 -->
         <property name="maxTotal" value="${http.maxTotal}"/>
-
         <!-- 设置每个主机地址的并发数 -->
         <property name="defaultMaxPerRoute" value="${http.defaultMaxPerRoute}"/>
     </bean>
@@ -40,8 +38,6 @@
         <property name="connectionRequestTimeout" value="${http.connectionRequestTimeout}"/>
         <!-- 数据传输的最长时间 -->
         <property name="socketTimeout" value="${http.socketTimeout}"/>
-        <!-- 提交请求前测试连接是否可用 -->
-        <!--<property name="staleConnectionCheckEnabled" value="${http.staleConnectionCheckEnabled}"/>-->
     </bean>
     <!-- 定义请求参数 -->
     <bean id="requestConfig" class="org.apache.http.client.config.RequestConfig" factory-bean="requestConfigBuilder"
