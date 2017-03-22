@@ -11,7 +11,9 @@ import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.pool.PoolStats;
 import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,7 +32,8 @@ public class HttpClientService {
     private CloseableHttpClient httpClient;
     @Autowired
     private RequestConfig requestConfig;
-
+    @Autowired
+    private PoolingHttpClientConnectionManager httpClientConnectionManager;
     /**
      * 执行GET请求
      *
@@ -40,6 +43,8 @@ public class HttpClientService {
      * @throws ClientProtocolException
      */
     public String doGet(String url) {
+        PoolStats totalStats = httpClientConnectionManager.getTotalStats();
+        System.out.println("PoolStats:" + totalStats);
         // 创建http GET请求  
         HttpGet httpGet = new HttpGet(url);
         httpGet.setConfig(this.requestConfig);
